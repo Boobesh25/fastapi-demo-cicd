@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+  labels:
+    app: fastapi-gke-demo
+spec:
+  # LoadBalancer automatically provisions an external Cloud Load Balancer with an external public IP on GCP
+  type: LoadBalancer
+  selector:
+    app: fastapi-gke-demo
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP

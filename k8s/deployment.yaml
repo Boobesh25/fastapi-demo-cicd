@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-gke-demo
+  labels:
+    app: fastapi-gke-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-gke-demo
+  template:
+    metadata:
+      labels:
+        app: fastapi-gke-demo
+    spec:
+      containers:
+        - name: fastapi-container
+          # Replace YOUR_PROJECT_ID with your actual Google Cloud Project ID
+          # Or Artifact Registry: LOCATION-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_REPO/fastapi-gke-demo:latest
+          image: us-central1-docker.pkg.dev/genai-499112/fastapi-repo/fastapi-gke-demo:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: fastapi-config
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
