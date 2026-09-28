@@ -58,7 +58,11 @@ def root():
         "docs_url": "/docs",
     }
 
-
+@app.get('/boobesh')
+def admin():
+    return{
+        "admin":True
+    }
 @app.get("/healthz", summary="Liveness Probe Endpoint")
 def healthz():
     """Kubernetes liveness probe to verify the application is running."""
