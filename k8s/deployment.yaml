@@ -18,7 +18,7 @@ spec:
         - name: fastapi-container
           # Replace YOUR_PROJECT_ID with your actual Google Cloud Project ID
           # Or Artifact Registry: LOCATION-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_REPO/fastapi-gke-demo:latest
-          image: us-central1-docker.pkg.dev/genai-499112/fastapi-repo/fastapi-gke-demo:v1.0.0
+          image: us-central1-docker.pkg.dev/genai-499112/fastapi-repo/fastapi-gke-demo:v1.0.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
