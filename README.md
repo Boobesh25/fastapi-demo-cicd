@@ -85,7 +85,7 @@ docker rm fastapi-app
 
 ```powershell
 # Set your GCP Project ID and Region
-$PROJECT_ID = "genai-499112"
+$PROJECT_ID = "XXXX-499XXX"
 $REGION = "us-central1"
 $CLUSTER_NAME = "fastapi-cluster"
 $REPO_NAME = "fastapi-repo"
